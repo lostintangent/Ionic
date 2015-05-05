@@ -1,0 +1,25 @@
+<ion-view view-title="Todos">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="items.toggleEditMode()" ng-if="auth.loggedIn" ng-disabled="items.data.length == 0">
+            {{ items.editMode ? "Cancel" : "Edit" }}
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher pulling-icon="ion-arrow-up-c" on-refresh="items.refresh(true)" ng-if="auth.loggedIn"></ion-refresher>
+        <div ng-if="!auth.loggedIn" style="padding: 10px">Log in to view your items</div>
+        <ion-list ng-if="auth.loggedIn" show-delete="items.editMode">
+            <ion-item class="item-icon-right" ng-repeat="item in items.data">
+                <ion-delete-button class="ion-minus-circled" ng-click="items.deleteItem(item)"></ion-delete-button>
+                {{ item.name }}
+                <i class="icon ion-alert positive" ng-if="item.important"></i>
+                <ion-option-button class="button-assertive" ng-click="items.deleteItem(item)">Delete</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="bar-positive">
+        <ng-pluralize ng-if="auth.loggedIn" class="title" count="items.data.length" when="{ '0': 'No todos (you can play video games!)', '1': '1 todo', 'other': '{} todos'}"></ng-pluralize>
+        <div class="buttons buttons-right">
+            <button class="button button-icon ion-compose" ng-click="items.addItem()" ng-if="auth.loggedIn"></button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

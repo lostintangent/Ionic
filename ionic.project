@@ -1,0 +1,12 @@
+{
+  "name": "Inventory",
+  "app_id": "634c5da5",
+  "gulpStartupTasks": [
+    "build",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
