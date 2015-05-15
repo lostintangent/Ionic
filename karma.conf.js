@@ -8,10 +8,10 @@ module.exports = function (config) {
         "www/lib/angular-mocks/angular-mocks.js",
 
         // #2) App code
-        "app/ts/*.ts",
+        "src/ts/*.ts",
 
         // #3) Test specs
-        "app/tests/unit/*Spec.ts",
+        "src/tests/unit/*Spec.ts",
     ],
 
     exclude: ["*.d.ts"],
@@ -45,7 +45,7 @@ module.exports = function (config) {
       "**/*.ts": ["typescript", "coverage"]
     },
 
-    reporters: ["spec", "coverage"],
+    reporters: ["spec", "coverage", "saucelabs"],
 
     port: 9876,
 
@@ -53,15 +53,14 @@ module.exports = function (config) {
 
     logLevel: config.LOG_INFO,
 
-    autoWatch: true,
-
-    browsers: ["PhantomJS2"],
+    browsers: ["IEOnWindows"],
 
     coverageReporter: {
       type: "html",
       dir: "coverage/"
     },
 
-    singleRun: false
+    autoWatch: false,
+    singleRun: true
   });
 };

@@ -31,6 +31,7 @@ gulp.task("build", ["sass", "ts", "images", "html", "templates", "lib"]);
 gulp.task("watch", function () {
   gulp.watch(paths.sass, ["sass"]);
   gulp.watch(paths.ts, ["ts"]);
+  gulp.watch(paths.templates, ["templates"]);
 });
 
 gulp.task("sass", function () {
@@ -66,7 +67,7 @@ gulp.task("ts", function () {
 
 gulp.task("templates", function () {
   return (
-    gulp.src(paths.html)
+    gulp.src(paths.templates)
       .pipe(htmlMin({
         collapseWhitespace: true
       }))
