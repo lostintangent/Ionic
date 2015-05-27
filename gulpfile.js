@@ -31,7 +31,8 @@ gulp.task("build", ["sass", "ts", "images", "html", "templates", "lib"]);
 gulp.task("watch", function () {
   gulp.watch(paths.sass, ["sass"]);
   gulp.watch(paths.ts, ["ts"]);
-  gulp.watch(paths.templates, ["templates"]);
+  gulp.watch(paths.html, ["html"]);
+
 });
 
 gulp.task("sass", function () {
@@ -120,15 +121,21 @@ gulp.task("e2e", function (done) {
 });
 
 gulp.task("e2e:sauce", function (done) {
+  // Spin up an instance of the Ionic
+  // integrated server for our session to request
   var server = require("child_process")
                .spawn("ionic", ["serve", "--nobrowser"],
                    { cwd: __dirname, stdio: "inherit" });
 
+  // Initialize a new SauceConnect tunnel so that the remote
+  // instance can successfully request our local server
   sauceConnect({ username: "joncart", accessKey: "51bea282-6ae5-4388-a717-8d0c6ff34670" }, function (error, sauceConnectProcess) {
+    // Initialize protractor, which will
+    // kick off our test suite
     sh.exec("protractor", function () {
         server.kill();
         sauceConnectProcess.close();
         done();
     });
-  })
+  });
 });

@@ -35,7 +35,7 @@ describe("InventoryController", () => {
                 return defer.promise;
             }
         };
-      })
+      });
     });
 
     it("should attempt to automatically login the user", () => {

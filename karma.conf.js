@@ -22,6 +22,8 @@ module.exports = function (config) {
       }
     },
 
+    // This is only used if a SauceLabs
+    // launcher is actually used
     sauceLabs: {
         testName: 'Web App Unit Tests',
         username: "joncart",
@@ -37,15 +39,11 @@ module.exports = function (config) {
         }
     },
 
-    cordovaSettings: {
-        platforms: ["ios"]
-    },
-
     preprocessors: {
-      "**/*.ts": ["typescript", "coverage"]
+      "**/*.ts": ["typescript"]
     },
 
-    reporters: ["spec", "coverage", "saucelabs"],
+    reporters: ["spec"],
 
     port: 9876,
 
@@ -53,14 +51,17 @@ module.exports = function (config) {
 
     logLevel: config.LOG_INFO,
 
-    browsers: ["IEOnWindows"],
+    browsers: ["PhantomJS2"],
 
+    // This is only used whenever
+    // the "coverage" report is used
     coverageReporter: {
       type: "html",
       dir: "coverage/"
     },
 
     autoWatch: false,
+    
     singleRun: true
   });
 };
