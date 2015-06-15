@@ -49,7 +49,7 @@ describe("InventoryController", () => {
         expect(backEndStub.attemptAutoLogin).toHaveBeenCalled();
     });
 
-    it("show allow manually logging in, and include propopgating the change", () => {
+    it("should allow manually logging in, and include propopgating the change", () => {
         spyOn(scope, "$broadcast");
 
         var controller = controllerFactory("InventoryController", {
@@ -63,7 +63,7 @@ describe("InventoryController", () => {
         expect(scope.$broadcast).toHaveBeenCalledWith("loggedIn");
     });
 
-    it("show allow manually logging out, and inlcude propogating the change", () => {
+    it("should allow manually logging out, and inlcude propogating the change", () => {
         spyOn(scope, "$broadcast");
 
         var controller = controllerFactory("InventoryController", {

@@ -1,20 +1,8 @@
 var gulp = require("gulp"),
-    gutil = require("gulp-util"),
-    concat = require("gulp-concat"),
-    sass = require('gulp-sass'),
-    minifyCss = require('gulp-minify-css'),
-    rename = require('gulp-rename'),
-    sh = require('shelljs'),
-    sourcemaps = require('gulp-sourcemaps'),
-    ts = require('gulp-typescript'),
-    karma = require("karma").server,
-    sauceConnect = require("sauce-connect-launcher"),
-    ngAnnotate = require("gulp-ng-annotate"),
-    uglify = require("gulp-uglify"),
-    tslint = require("gulp-tslint"),
-    templateCache = require("gulp-angular-templatecache"),
-    htmlMin = require("gulp-htmlmin");
-
+    sh = require("shelljs"),
+    sourcemaps = require("gulp-sourcemaps"),
+    ts = require("gulp-typescript");
+    
 var paths = {
   lib: ["./src/lib/*.js"],
   sass: ["./src/scss/**/*.scss"],
@@ -24,18 +12,19 @@ var paths = {
   ts: ["./src/ts/App.d.ts", "./src/ts/*.service.ts", "./src/ts/*.controller.ts", "./src/ts/Inventory.ts"]
 };
 
-gulp.task("default", ["build"]);
-
 gulp.task("build", ["sass", "ts", "images", "html", "templates", "lib"]);
+gulp.task("default", ["build"]);
 
 gulp.task("watch", function () {
   gulp.watch(paths.sass, ["sass"]);
   gulp.watch(paths.ts, ["ts"]);
   gulp.watch(paths.html, ["html"]);
-
 });
 
 gulp.task("sass", function () {
+  var sass = require("gulp-sass"),
+    minifyCss = require("gulp-minify-css");
+
   return (
     gulp.src(paths.sass)
       .pipe(sourcemaps.init())
@@ -52,6 +41,11 @@ var project = ts.createProject({
 });
 
 gulp.task("ts", function () {
+  var concat = require("gulp-concat"),
+      ngAnnotate = require("gulp-ng-annotate"),
+      uglify = require("gulp-uglify"),
+      tslint = require("gulp-tslint");
+
   return (
     gulp.src(paths.ts)
       .pipe(tslint())
@@ -67,6 +61,9 @@ gulp.task("ts", function () {
 });
 
 gulp.task("templates", function () {
+  var htmlMin = require("gulp-htmlmin"),
+    templateCache = require("gulp-angular-templatecache");
+
   return (
     gulp.src(paths.templates)
       .pipe(htmlMin({
@@ -102,6 +99,8 @@ gulp.task("lib", function () {
 });
 
 gulp.task("test", function (done) {
+  var karma = require("karma").server;
+
   karma.start({
     configFile: __dirname + "/karma.conf.js"
   }, done);
@@ -126,6 +125,8 @@ gulp.task("e2e:sauce", function (done) {
   var server = require("child_process")
                .spawn("ionic", ["serve", "--nobrowser"],
                    { cwd: __dirname, stdio: "inherit" });
+
+  var sauceConnect = require("sauce-connect-launcher");
 
   // Initialize a new SauceConnect tunnel so that the remote
   // instance can successfully request our local server

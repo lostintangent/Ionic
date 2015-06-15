@@ -53,8 +53,6 @@ module.exports = function (config) {
 
     browsers: ["PhantomJS2"],
 
-    // This is only used whenever
-    // the "coverage" report is used
     coverageReporter: {
       type: "html",
       dir: "coverage/"
