@@ -46,7 +46,7 @@ module.exports = function (config) {
     reporters: ["junit", "coverage", "spec"],
 
     junitReporter: {
-        outputDir: __dirname + "/tests",
+        outputDir: "tests",
         outputFile: "results.xml",
         suite: "Ionic"
     },
@@ -61,7 +61,7 @@ module.exports = function (config) {
 
     coverageReporter: {
       type: "cobertura",
-      dir: "coverage/",
+      dir: "coverage",
     },
 
     autoWatch: false,
