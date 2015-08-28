@@ -47,7 +47,6 @@ module.exports = function (config) {
 
     junitReporter: {
         outputDir: "tests",
-        outputFile: "results.xml",
         suite: "Ionic"
     },
 
