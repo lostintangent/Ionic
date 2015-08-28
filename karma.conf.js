@@ -4,7 +4,7 @@ module.exports = function (config) {
 
     files: [
         // #1) Libraries
-        "www/lib/ionic/js/ionic.bundle.js",
+        "www/lib/ionic/release/js/ionic.bundle.js",
         "www/lib/angular-mocks/angular-mocks.js",
 
         // #2) App code
