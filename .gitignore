@@ -1,7 +1,8 @@
 node_modules/
+tests/
 /platforms/
 /plugins/
-/coverage/
+coverage/
 *.sublime-workspace
 .DS_Store
 www/
