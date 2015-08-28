@@ -43,7 +43,13 @@ module.exports = function (config) {
       "**/*.ts": ["typescript"]
     },
 
-    reporters: ["spec"],
+    reporters: ["junit", "coverage", "spec"],
+
+    junitReporter: {
+        outputDir: __dirname + "/tests",
+        outputFile: "results.xml",
+        suite: "Ionic"
+    },
 
     port: 9876,
 
@@ -54,8 +60,8 @@ module.exports = function (config) {
     browsers: ["PhantomJS2"],
 
     coverageReporter: {
-      type: "html",
-      dir: "coverage/"
+      type: "cobertura",
+      dir: "coverage/",
     },
 
     autoWatch: false,
