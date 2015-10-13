@@ -99,11 +99,9 @@ gulp.task("lib", function () {
 });
 
 gulp.task("test", function (done) {
-  var karma = require("karma").server;
-
-  karma.start({
-    configFile: __dirname + "/karma.conf.js"
-  }, done);
+  var Server = require("karma").Server;
+  var server = new Server({ configFile: __dirname + "/karma.conf.js"}, done);
+  server.start();
 });
 
 gulp.task("e2e", function (done) {

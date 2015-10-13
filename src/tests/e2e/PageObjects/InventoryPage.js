@@ -9,7 +9,7 @@ InventoryPage.prototype = {
     .click();
   },
   clickLoginLink: function () {
-    element(by.css("ion-item")).click();
+    element(by.css("ion-item[ng-click]")).click();
     return new LoginPage();
   },
   clickLogoutLink: function () {

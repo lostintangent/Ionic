@@ -6,7 +6,7 @@ describe("InventoryController", () => {
     var backEndStub: IAuthenticationProvider,
         controllerFactory: ng.IControllerService,
         scope: ng.IRootScopeService;
-
+        
     beforeEach(() => {
       module("Inventory.Controllers.Login");
 

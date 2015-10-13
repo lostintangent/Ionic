@@ -1,19 +1,6 @@
 /// <reference path="App.d.ts" />
 
 angular.module("Inventory", ["ionic", "TemplateCache", "Inventory.Backends", "Inventory.Controllers.Login", "Inventory.Controllers.Items"])
-
-.run(function ($ionicPlatform: Ionic.IPlatform) {
-  $ionicPlatform.ready(() => {
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-
-    if (window.StatusBar) {
-      window.StatusBar.styleDefault();
-    }
-  });
-})
-
 .config(($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, backEndProvider: IBackEndProvider) => {
     $stateProvider
         .state("Inventory", {
@@ -40,3 +27,15 @@ angular.module("Inventory", ["ionic", "TemplateCache", "Inventory.Backends", "In
         tableName: "Items"
     });
 });
+
+document.addEventListener("deviceready", function () {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+
+    if (window.StatusBar) {
+      window.StatusBar.styleDefault();
+    }
+
+    angular.bootstrap(document, ["Inventory"]);
+ });
