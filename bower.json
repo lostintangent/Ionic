@@ -2,11 +2,11 @@
   "name": "Ionic",
   "private": true,
   "devDependencies": {
-    "angular-mocks": "~1.4.5",
+    "angular-mocks": "~1.4.7",
     "ngCordova": "~0.1.20-alpha"
   },
   "dependencies": {
-    "ionic": "1.1.0"
+    "ionic": "~1.1.0"
   },
   "version": "1.0.0",
   "homepage": "https://github.com/lostintangent/Ionic",
@@ -21,6 +21,6 @@
     "tests"
   ],
   "resolutions": {
-    "angular": "1.4.5"
+    "angular": "1.4.7"
   }
 }
