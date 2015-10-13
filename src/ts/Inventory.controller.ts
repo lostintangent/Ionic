@@ -16,7 +16,7 @@ module InventoryControllers {
             if (!user) {
                 return;
             }
-            
+
             this.loggedIn = true;
             this.$scope.$broadcast("loggedIn");
         }
